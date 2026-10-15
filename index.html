@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentHub ATS - Modern Applicant Tracking System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- TOP HEADER / NAVBAR -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Brand / Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-brand-600 text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-md shadow-brand-500/20">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-slate-900 tracking-tight">TalentHub<span class="text-brand-600">.ats</span></span>
+                        <span class="hidden sm:inline-block ml-2 text-xs bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full font-medium border border-brand-200">Enterprise</span>
+                    </div>
+                </div>
+
+                <!-- Right Header Tools -->
+                <div class="flex items-center space-x-4">
+                    <!-- Global Search -->
+                    <div class="relative hidden md:block">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" placeholder="Cari kandidat, posisi, atau tag..." class="pl-9 pr-4 py-1.5 text-sm bg-slate-100 focus:bg-white border border-transparent focus:border-brand-500 rounded-lg outline-none transition w-64">
+                    </div>
+
+                    <!-- Notifications -->
+                    <button class="relative p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+                    </button>
+
+                    <!-- User Profile Dropdown -->
+                    <div class="flex items-center space-x-3 pl-3 border-l border-slate-200">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-500/20">
+                        <div class="hidden lg:block text-left">
+                            <div class="text-sm font-semibold text-slate-800 leading-tight">Sarah Jenkins</div>
+                            <div class="text-xs text-slate-500">Lead Talent Acquisition</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN NAVIGATION MENU SWITCHER -->
+        <nav class="bg-white border-t border-slate-100 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex space-x-1 sm:space-x-4 overflow-x-auto no-scrollbar">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn py-3 px-4 text-sm font-medium border-b-2 border-brand-600 text-brand-600 flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button onclick="switchTab('candidates')" id="nav-candidates" class="nav-btn py-3 px-4 text-sm font-medium border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="user-check" class="w-4 h-4"></i>
+                    <span>Kandidat</span>
+                    <span class="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded-full font-semibold">142</span>
+                </button>
+                <button onclick="switchTab('jobs')" id="nav-jobs" class="nav-btn py-3 px-4 text-sm font-medium border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="briefcase" class="w-4 h-4"></i>
+                    <span>Lowongan Kerja</span>
+                    <span class="bg-brand-50 text-brand-700 text-xs px-2 py-0.5 rounded-full font-semibold">8 Aktif</span>
+                </button>
+                <button onclick="switchTab('interviews')" id="nav-interviews" class="nav-btn py-3 px-4 text-sm font-medium border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span>Jadwal Interview</span>
+                </button>
+                <button onclick="switchTab('reports')" id="nav-reports" class="nav-btn py-3 px-4 text-sm font-medium border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                    <span>Laporan & Analytics</span>
+                </button>
+                <button onclick="switchTab('settings')" id="nav-settings" class="nav-btn py-3 px-4 text-sm font-medium border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="settings" class="w-4 h-4"></i>
+                    <span>Pengaturan</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT AREA (SPA CONTAINER) -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- 1. DASHBOARD VIEW -->
+        <section id="view-dashboard" class="space-y-6">
+            <!-- Page Title -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">Dashboard Ringkasan Rekrutmen</h1>
+                    <p class="text-sm text-slate-500">Pantau perkembangan rekrutmen dan KPI secara real-time.</p>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm flex items-center space-x-2">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Export Laporan</span>
+                    </button>
+                    <button onclick="switchTab('jobs')" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm flex items-center space-x-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        <span>Tambah Lowongan</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between text-slate-500 mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider">Total Pelamar</span>
+                        <div class="p-2 bg-blue-50 text-blue-600 rounded-lg"><i data-lucide="users" class="w-4 h-4"></i></div>
+                    </div>
+                    <div class="text-2xl font-bold text-slate-900">1,248</div>
+                    <div class="mt-2 flex items-center text-xs text-emerald-600 font-medium">
+                        <i data-lucide="trending-up" class="w-3.5 h-3.5 mr-1"></i> +12% dari bulan lalu
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between text-slate-500 mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider">In Review</span>
+                        <div class="p-2 bg-amber-50 text-amber-600 rounded-lg"><i data-lucide="file-text" class="w-4 h-4"></i></div>
+                    </div>
+                    <div class="text-2xl font-bold text-slate-900">84</div>
+                    <div class="mt-2 flex items-center text-xs text-slate-500">
+                        SLA Rata-rata: 1.8 Hari
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between text-slate-500 mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider">Interview Stage</span>
+                        <div class="p-2 bg-purple-50 text-purple-600 rounded-lg"><i data-lucide="video" class="w-4 h-4"></i></div>
+                    </div>
+                    <div class="text-2xl font-bold text-slate-900">23</div>
+                    <div class="mt-2 flex items-center text-xs text-purple-600 font-medium">
+                        8 Sesi Minggu Ini
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between text-slate-500 mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider">Berhasil Diterima</span>
+                        <div class="p-2 bg-emerald-50 text-emerald-600 rounded-lg"><i data-lucide="user-check" class="w-4 h-4"></i></div>
+                    </div>
+                    <div class="text-2xl font-bold text-slate-900">14</div>
+                    <div class="mt-2 flex items-center text-xs text-emerald-600 font-medium">
+                        Target Headcount: 70%
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between text-slate-500 mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider">Offer Declined</span>
+                        <div class="p-2 bg-rose-50 text-rose-600 rounded-lg"><i data-lucide="user-x" class="w-4 h-4"></i></div>
+                    </div>
+                    <div class="text-2xl font-bold text-slate-900">2</div>
+                    <div class="mt-2 flex items-center text-xs text-rose-600 font-medium">
+                        Drop rate: 12.5%
+                    </div>
+                </div>
+            </div>
+
+            <!-- Funnel & Activity Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Funnel Chart -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-base font-bold text-slate-900">Recruitment Funnel Conversion</h2>
+                        <span class="text-xs text-slate-500">30 Hari Terakhir</span>
+                    </div>
+                    <div class="h-64 relative">
+                        <canvas id="funnelChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Upcoming Tasks & SLA Alerts -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-base font-bold text-slate-900">Aktivitas & Warning SLA</h2>
+                            <span class="text-xs font-semibold text-rose-600 bg-rose-50 px-2 py-0.5 rounded">2 Urgent</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start space-x-3">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+                                <div class="text-xs">
+                                    <div class="font-semibold text-amber-900">Mendekati Deadline SLA (24 Jam)</div>
+                                    <div class="text-amber-700 mt-0.5">5 Kandidat di lowongan <b>Sr. Java Developer</b> butuh review segera.</div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-start space-x-3">
+                                <i data-lucide="clock" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
+                                <div class="text-xs">
+                                    <div class="font-semibold text-slate-800">Interview Hari Ini - 14:00 WIB</div>
+                                    <div class="text-slate-600 mt-0.5">Budi Santoso dengan User Hiring Manager (Dev Team).</div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-start space-x-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
+                                <div class="text-xs">
+                                    <div class="font-semibold text-slate-800">Offering Accepted</div>
+                                    <div class="text-slate-600 mt-0.5">Siti Nurhaliza menerima tawaran posisi Talent Acquisition Supervisor.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="switchTab('candidates')" class="mt-4 w-full py-2 text-center text-xs font-semibold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-lg transition">
+                        Lihat Semua Tugas Rekrutmen &rarr;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. CANDIDATE DATABASE VIEW -->
+        <section id="view-candidates" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">Database Kandidat</h1>
+                    <p class="text-sm text-slate-500">Kelola pelamar, filter talent pool, dan pantau status seleksi.</p>
+                </div>
+                <button class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm flex items-center space-x-2">
+                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                    <span>Tambah Kandidat Manual</span>
+                </button>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between">
+                <div class="relative w-full md:w-80">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="candidateSearch" oninput="filterCandidates()" placeholder="Cari Nama / Email / Role..." class="w-full pl-9 pr-4 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent">
+                </div>
+                <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                    <select id="roleFilter" onchange="filterCandidates()" class="px-3 py-2 text-sm border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="">Semua Posisi</option>
+                        <option value="Sr. Java Developer">Sr. Java Developer</option>
+                        <option value="Talent Acquisition Supervisor">TA Supervisor</option>
+                        <option value="UI/UX Designer">UI/UX Designer</option>
+                        <option value="Product Manager">Product Manager</option>
+                    </select>
+                    <select id="stageFilter" onchange="filterCandidates()" class="px-3 py-2 text-sm border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="">Semua Tahapan</option>
+                        <option value="Screening">Screening</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Technical Test">Technical Test</option>
+                        <option value="Offered">Offered</option>
+                        <option value="Hired">Hired</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Candidates Table -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                                <th class="p-4">Kandidat</th>
+                                <th class="p-4">Posisi Dilamar</th>
+                                <th class="p-4">Match Score</th>
+                                <th class="p-4">Tahapan (Stage)</th>
+                                <th class="p-4">Pengalaman</th>
+                                <th class="p-4 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="candidateTableBody" class="divide-y divide-slate-200 text-sm">
+                            <!-- Populated via Javascript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. JOB OPENINGS VIEW -->
+        <section id="view-jobs" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">Lowongan Kerja (Job Openings)</h1>
+                    <p class="text-sm text-slate-500">Daftar posisi aktif, kuota headcount, dan progress pemenuhan SLA.</p>
+                </div>
+                <button class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm flex items-center space-x-2">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    <span>Buat Lowongan Baru</span>
+                </button>
+            </div>
+
+            <!-- Job Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="jobGrid">
+                <!-- Populated via Javascript -->
+            </div>
+        </section>
+
+
+        <!-- 4. INTERVIEW SCHEDULE VIEW -->
+        <section id="view-interviews" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">Jadwal Interview</h1>
+                    <p class="text-sm text-slate-500">Agenda wawancara mendatang dengan User & Hiring Manager.</p>
+                </div>
+                <button class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm flex items-center space-x-2">
+                    <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+                    <span>Atur Sesi Interview</span>
+                </button>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                    <h2 class="font-bold text-slate-800">Agenda Hari Ini (Kamis, 15 Okt 2026)</h2>
+                    <span class="text-xs bg-brand-50 text-brand-700 px-3 py-1 rounded-full font-medium">3 Sesi Terjadwal</span>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="p-4 border border-slate-200 rounded-xl hover:border-brand-300 transition flex flex-col md:flex-row justify-between md:items-center gap-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-brand-50 text-brand-600 rounded-lg text-center font-bold">
+                                <div class="text-xs uppercase">Okt</div>
+                                <div class="text-lg">15</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-slate-900">Budi Santoso &mdash; User Technical Interview</div>
+                                <div class="text-xs text-slate-500 mt-1 flex items-center space-x-3">
+                                    <span class="flex items-center"><i data-lucide="clock" class="w-3.5 h-3.5 mr-1"></i> 14:00 - 15:00 WIB</span>
+                                    <span class="flex items-center"><i data-lucide="user" class="w-3.5 h-3.5 mr-1"></i> User: VP of Engineering</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <a href="#" class="px-3 py-1.5 text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 transition flex items-center space-x-1">
+                                <i data-lucide="video" class="w-3.5 h-3.5"></i>
+                                <span>Join MS Teams</span>
+                            </a>
+                            <button class="px-3 py-1.5 text-xs font-medium bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition">Reschedule</button>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border border-slate-200 rounded-xl hover:border-brand-300 transition flex flex-col md:flex-row justify-between md:items-center gap-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-brand-50 text-brand-600 rounded-lg text-center font-bold">
+                                <div class="text-xs uppercase">Okt</div>
+                                <div class="text-lg">15</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-slate-900">Rina Wijaya &mdash; HR Screening Interview</div>
+                                <div class="text-xs text-slate-500 mt-1 flex items-center space-x-3">
+                                    <span class="flex items-center"><i data-lucide="clock" class="w-3.5 h-3.5 mr-1"></i> 16:00 - 16:45 WIB</span>
+                                    <span class="flex items-center"><i data-lucide="user" class="w-3.5 h-3.5 mr-1"></i> Recruiter: Sarah Jenkins</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <a href="#" class="px-3 py-1.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-100 transition flex items-center space-x-1">
+                                <i data-lucide="video" class="w-3.5 h-3.5"></i>
+                                <span>Join Zoom Meeting</span>
+                            </a>
+                            <button class="px-3 py-1.5 text-xs font-medium bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition">Reschedule</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. REPORTS & ANALYTICS VIEW -->
+        <section id="view-reports" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">Laporan & Analytics Rekrutmen</h1>
+                    <p class="text-sm text-slate-500">Statistik performa channel, SLA Time-to-Hire, dan efisiensi tim.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Time to Hire Chart -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h2 class="font-bold text-slate-900 mb-4">Rata-rata Time-to-Hire (Hari) per Department</h2>
+                    <div class="h-64">
+                        <canvas id="timeToHireChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Channel Effectiveness Chart -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h2 class="font-bold text-slate-900 mb-4">Sourcing Channel Effectiveness</h2>
+                    <div class="h-64">
+                        <canvas id="channelChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. SETTINGS VIEW -->
+        <section id="view-settings" class="hidden space-y-6">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Pengaturan System & SOP ATS</h1>
+                <p class="text-sm text-slate-500">Konfigurasi standar operasional rekrutmen dan bobot penilaian kriteria.</p>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 space-y-6 max-w-3xl">
+                <div>
+                    <h3 class="text-base font-semibold text-slate-900 mb-2">Bobot Penilaian Model SARL / TAPS</h3>
+                    <p class="text-xs text-slate-500 mb-4">Atur standar pembobotan penilaian skor otomatisasi kecocokan kandidat.</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span>Kesesuaian Skill Tech (Technical Assessment)</span>
+                                <span>40%</span>
+                            </div>
+                            <input type="range" class="w-full accent-brand-600" value="40">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span>Pengalaman Kerja Related</span>
+                                <span>30%</span>
+                            </div>
+                            <input type="range" class="w-full accent-brand-600" value="30">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span>Culture Fit & Soft Skills</span>
+                                <span>30%</span>
+                            </div>
+                            <input type="range" class="w-full accent-brand-600" value="30">
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-slate-200">
+
+                <div class="flex justify-end">
+                    <button class="bg-brand-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition">Simpan Perubahan</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CANDIDATE DETAIL MODAL / DRAWER -->
+    <div id="candidateModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex justify-end transition-opacity">
+        <div class="bg-white w-full max-w-2xl h-full shadow-2xl overflow-y-auto flex flex-col justify-between p-6">
+            <div>
+                <!-- Modal Header -->
+                <div class="flex justify-between items-start border-b border-slate-200 pb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-700 text-lg" id="modalInitials">
+                            BS
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-900" id="modalName">Budi Santoso</h2>
+                            <p class="text-xs text-slate-500" id="modalRole">Sr. Java Developer</p>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="mt-6 space-y-6">
+                    <!-- Status Badge & Score -->
+                    <div class="flex items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div>
+                            <span class="text-xs text-slate-500 block">Status Tahapan</span>
+                            <span id="modalStage" class="inline-block mt-1 font-semibold text-xs px-2.5 py-1 rounded-full bg-blue-100 text-blue-800">
+                                Interview
+                            </span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 block">AI Assessment Match</span>
+                            <span id="modalScore" class="text-lg font-bold text-emerald-600">92%</span>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Informasi Kontak</h4>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div class="text-slate-600">Email: <span id="modalEmail" class="font-medium text-slate-800">budi@example.com</span></div>
+                            <div class="text-slate-600">Telepon: <span id="modalPhone" class="font-medium text-slate-800">+62 812-3456-7890</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Ringkasan Resume (SARL/TAPS Rating)</h4>
+                        <p class="text-sm text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 leading-relaxed">
+                            Memiliki pengalaman 5+ tahun menggunakan Spring Boot, Microservices, dan PostgreSQL. Terbiasa memimpin tim kecil beranggotakan 4 engineer.
+                        </p>
+                    </div>
+
+                    <!-- Notes -->
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Catatan Recruiter</h4>
+                        <textarea class="w-full text-sm p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none" rows="3" placeholder="Tambahkan catatan hasil wawancara di sini..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer / Actions -->
+            <div class="pt-4 border-t border-slate-200 flex items-center justify-between mt-6">
+                <button class="px-4 py-2 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg text-sm font-medium transition flex items-center space-x-2">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Download CV</span>
+                </button>
+                <div class="flex space-x-2">
+                    <button onclick="closeModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition">Tutup</button>
+                    <button onclick="alert('Status kandidat berhasil diperbarui!')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition">Simpan Perubahan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // MOCK DATA
+        const candidateData = [
+            { id: 1, name: 'Budi Santoso', role: 'Sr. Java Developer', score: 92, stage: 'Interview', exp: '5 Tahun', email: 'budi.santoso@email.com', phone: '+62 812-1111-2222' },
+            { id: 2, name: 'Siti Nurhaliza', role: 'Talent Acquisition Supervisor', score: 88, stage: 'Offered', exp: '4 Tahun', email: 'siti.nur@email.com', phone: '+62 813-2222-3333' },
+            { id: 3, name: 'Andi Pratama', role: 'UI/UX Designer', score: 76, stage: 'Screening', exp: '2 Tahun', email: 'andi.p@email.com', phone: '+62 815-3333-4444' },
+            { id: 4, name: 'Dewi Lestari', role: 'Product Manager', score: 95, stage: 'Hired', exp: '6 Tahun', email: 'dewi.lestari@email.com', phone: '+62 817-4444-5555' },
+            { id: 5, name: 'Rizky Febrian', role: 'Sr. Java Developer', score: 64, stage: 'Rejected', exp: '3 Tahun', email: 'rizky.f@email.com', phone: '+62 819-5555-6666' }
+        ];
+
+        const jobData = [
+            { title: 'Sr. Java Developer', dept: 'Engineering', location: 'Jakarta (Hybrid)', filled: 3, target: 5, sla: '12 Hari Lagi' },
+            { title: 'Talent Acquisition Supervisor', dept: 'Human Resources', location: 'Jakarta (Onsite)', filled: 1, target: 1, sla: 'Selesai' },
+            { title: 'UI/UX Designer', dept: 'Product Design', location: 'Remote', filled: 0, target: 2, sla: '20 Hari Lagi' },
+            { title: 'Product Manager', dept: 'Product', location: 'Jakarta (Hybrid)', filled: 2, target: 2, sla: 'Selesai' }
+        ];
+
+        // INITIALIZE APP
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            renderCandidateTable(candidateData);
+            renderJobGrid(jobData);
+            initCharts();
+        });
+
+        // SPA TAB SWITCHER
+        function switchTab(tabId) {
+            const views = ['dashboard', 'candidates', 'jobs', 'interviews', 'reports', 'settings'];
+            views.forEach(v => {
+                document.getElementById(`view-${v}`).classList.add('hidden');
+                const navBtn = document.getElementById(`nav-${v}`);
+                navBtn.classList.remove('border-brand-600', 'text-brand-600');
+                navBtn.classList.add('border-transparent', 'text-slate-600');
+            });
+
+            document.getElementById(`view-${tabId}`).classList.remove('hidden');
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            activeNav.classList.add('border-brand-600', 'text-brand-600');
+            activeNav.classList.remove('border-transparent', 'text-slate-600');
+        }
+
+        // CANDIDATES TABLE RENDER
+        function renderCandidateTable(data) {
+            const tbody = document.getElementById('candidateTableBody');
+            tbody.innerHTML = '';
+
+            data.forEach(item => {
+                let stageColor = 'bg-slate-100 text-slate-700';
+                if(item.stage === 'Interview') stageColor = 'bg-purple-100 text-purple-700';
+                if(item.stage === 'Offered') stageColor = 'bg-amber-100 text-amber-700';
+                if(item.stage === 'Hired') stageColor = 'bg-emerald-100 text-emerald-700';
+                if(item.stage === 'Rejected') stageColor = 'bg-rose-100 text-rose-700';
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="p-4 font-semibold text-slate-900">${item.name}</td>
+                    <td class="p-4 text-slate-600">${item.role}</td>
+                    <td class="p-4"><span class="font-bold text-emerald-600">${item.score}%</span></td>
+                    <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-medium ${stageColor}">${item.stage}</span></td>
+                    <td class="p-4 text-slate-500">${item.exp}</td>
+                    <td class="p-4 text-right">
+                        <button onclick="openCandidateModal(${item.id})" class="text-brand-600 hover:text-brand-800 font-medium text-xs bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition">Detail &rarr;</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // FILTER CANDIDATES
+        function filterCandidates() {
+            const searchVal = document.getElementById('candidateSearch').value.toLowerCase();
+            const roleVal = document.getElementById('roleFilter').value;
+            const stageVal = document.getElementById('stageFilter').value;
+
+            const filtered = candidateData.filter(c => {
+                const matchSearch = c.name.toLowerCase().includes(searchVal) || c.email.toLowerCase().includes(searchVal);
+                const matchRole = roleVal === '' || c.role === roleVal;
+                const matchStage = stageVal === '' || c.stage === stageVal;
+                return matchSearch && matchRole && matchStage;
+            });
+
+            renderCandidateTable(filtered);
+        }
+
+        // JOB GRID RENDER
+        function renderJobGrid(data) {
+            const container = document.getElementById('jobGrid');
+            container.innerHTML = '';
+
+            data.forEach(job => {
+                const percent = Math.round((job.filled / job.target) * 100);
+                const card = document.createElement('div');
+                card.className = 'bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-0.5 rounded-full font-medium">${job.dept}</span>
+                            <span class="text-xs font-semibold text-brand-600">${job.sla}</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-1">${job.title}</h3>
+                        <p class="text-xs text-slate-500 flex items-center mb-4"><i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1"></i> ${job.location}</p>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
+                            <span>Headcount SLA: ${job.filled}/${job.target} Hired</span>
+                            <span>${percent}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brand-600 h-full rounded-full" style="width: ${percent}%"></div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // MODAL HANDLERS
+        function openCandidateModal(id) {
+            const candidate = candidateData.find(c => c.id === id);
+            if (!candidate) return;
+
+            document.getElementById('modalName').innerText = candidate.name;
+            document.getElementById('modalRole').innerText = candidate.role;
+            document.getElementById('modalScore').innerText = candidate.score + '%';
+            document.getElementById('modalStage').innerText = candidate.stage;
+            document.getElementById('modalEmail').innerText = candidate.email;
+            document.getElementById('modalPhone').innerText = candidate.phone;
+            
+            const initials = candidate.name.split(' ').map(n => n[0]).join('');
+            document.getElementById('modalInitials').innerText = initials;
+
+            document.getElementById('candidateModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('candidateModal').classList.add('hidden');
+        }
+
+        // CHART JS INITIALIZATION
+        function initCharts() {
+            // Funnel Chart
+            const funnelCtx = document.getElementById('funnelChart').getContext('2d');
+            new Chart(funnelCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Sourcing', 'Screening', 'Tech Test', 'Interview', 'Offering', 'Hired'],
+                    datasets: [{
+                        label: 'Jumlah Kandidat',
+                        data: [1248, 410, 180, 84, 18, 14],
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            // Time to Hire Chart
+            const timeCtx = document.getElementById('timeToHireChart').getContext('2d');
+            new Chart(timeCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Engineering', 'Product', 'HR', 'Design', 'Sales'],
+                    datasets: [{
+                        label: 'Hari',
+                        data: [28, 22, 14, 19, 15],
+                        borderColor: '#2563eb',
+                        tension: 0.3,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Channel Chart
+            const channelCtx = document.getElementById('channelChart').getContext('2d');
+            new Chart(channelCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['LinkedIn', 'Employee Referral', 'Jobstreet', 'Direct Career Site'],
+                    datasets: [{
+                        data: [45, 25, 20, 10],
+                        backgroundColor: ['#1d4ed8', '#10b981', '#f59e0b', '#64748b']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+    </script>
+</body>
+</html>
