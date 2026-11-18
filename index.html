@@ -146,11 +146,20 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      <!-- Plant 1 -->
-      <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition">
-        <div class="h-44 bg-gradient-to-r from-blue-900 to-albea-navy flex items-center justify-center text-white relative">
-          <i data-lucide="factory" class="w-16 h-16 opacity-30"></i>
-          <span class="absolute top-4 left-4 bg-albea-teal text-white text-xs font-bold px-3 py-1 rounded-full">Plant Utama</span>
+      <!-- Plant 1: PT Techpack Asia -->
+      <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition group">
+        <div class="h-52 bg-gradient-to-r from-blue-900 to-albea-navy flex items-center justify-center text-white relative overflow-hidden">
+          <img 
+            src="PT Techpack Asia - Foto.jpg" 
+            alt="Fasilitas PT Techpack Asia" 
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            onerror="this.style.display='none'; document.getElementById('fallback-plant-1').style.display='flex';"
+          >
+          <div id="fallback-plant-1" style="display:none;" class="w-full h-full flex items-center justify-center">
+            <i data-lucide="factory" class="w-16 h-16 opacity-30"></i>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute top-4 left-4 bg-albea-teal text-white text-xs font-bold px-3 py-1 rounded-full shadow">Plant Utama</span>
         </div>
         <div class="p-6">
           <h3 class="text-xl font-bold text-albea-navy mb-2">PT Techpack Asia</h3>
@@ -167,11 +176,20 @@
         </div>
       </div>
 
-      <!-- Plant 2 -->
-      <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition">
-        <div class="h-44 bg-gradient-to-r from-teal-800 to-albea-blue flex items-center justify-center text-white relative">
-          <i data-lucide="boxes" class="w-16 h-16 opacity-30"></i>
-          <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Tubes Packaging</span>
+      <!-- Plant 2: PT Betts Indonesia -->
+      <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition group">
+        <div class="h-52 bg-gradient-to-r from-teal-800 to-albea-blue flex items-center justify-center text-white relative overflow-hidden">
+          <img 
+            src="Betts Indonesia Foto.jpg" 
+            alt="Fasilitas PT Betts Indonesia" 
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            onerror="this.style.display='none'; document.getElementById('fallback-plant-2').style.display='flex';"
+          >
+          <div id="fallback-plant-2" style="display:none;" class="w-full h-full flex items-center justify-center">
+            <i data-lucide="boxes" class="w-16 h-16 opacity-30"></i>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Tubes Packaging</span>
         </div>
         <div class="p-6">
           <h3 class="text-xl font-bold text-albea-navy mb-2">PT Betts Indonesia</h3>
@@ -188,11 +206,11 @@
         </div>
       </div>
 
-      <!-- Plant 3 -->
-      <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition">
-        <div class="h-44 bg-gradient-to-r from-slate-800 to-gray-900 flex items-center justify-center text-white relative">
-          <i data-lucide="cog" class="w-16 h-16 opacity-30"></i>
-          <span class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">Rigid Packaging</span>
+      <!-- Plant 3: PT Albéa Rigid Packaging Surabaya -->
+      <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition group">
+        <div class="h-52 bg-gradient-to-r from-slate-800 to-gray-900 flex items-center justify-center text-white relative overflow-hidden">
+          <i data-lucide="cog" class="w-16 h-16 opacity-30 group-hover:scale-110 transition-transform duration-500"></i>
+          <span class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Rigid Packaging</span>
         </div>
         <div class="p-6">
           <h3 class="text-xl font-bold text-albea-navy mb-2">PT Albéa Rigid Packaging Surabaya</h3>
@@ -355,7 +373,6 @@
 
         <!-- ROW 1 -->
         <div class="job-row p-6 lg:px-6 lg:py-5 hover:bg-blue-50/40 transition grid grid-cols-1 lg:grid-cols-12 gap-4 items-center" data-plant="Techpack">
-          <!-- Kolom 1: Posisi -->
           <div class="lg:col-span-3">
             <span class="inline-block bg-blue-100 text-albea-blue text-[11px] font-bold px-2.5 py-0.5 rounded mb-1">Talent Acquisition / HR</span>
             <h3 class="text-base font-bold text-albea-navy">Recruitment & OD Specialist</h3>
@@ -366,7 +383,6 @@
             </div>
           </div>
 
-          <!-- Kolom 2: Penempatan -->
           <div class="lg:col-span-3">
             <div class="text-sm font-semibold text-gray-800 flex items-center gap-1.5">
               <i data-lucide="building-2" class="w-4 h-4 text-albea-teal shrink-0"></i> PT Techpack Asia
@@ -374,7 +390,6 @@
             <p class="text-xs text-gray-500 pl-5 mt-0.5">Karangawen, Kab. Demak, Jawa Tengah</p>
           </div>
 
-          <!-- Kolom 3: Job Desc -->
           <div class="lg:col-span-4">
             <p class="text-xs text-gray-600 leading-relaxed">
               Mengelola proses rekrutmen end-to-end, asesmen psikotes, program employer branding, serta proyek digitalisasi Continuous Improvement HR.
@@ -384,7 +399,6 @@
             </button>
           </div>
 
-          <!-- Kolom 4: Action -->
           <div class="lg:col-span-2 flex lg:justify-end items-center gap-2 pt-3 lg:pt-0 border-t lg:border-t-0 border-gray-100">
             <a href="#" onclick="openMsForm(event, 'Recruitment & OD Specialist - PT Techpack Asia')" class="w-full lg:w-auto text-center bg-albea-teal hover:bg-teal-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold transition shadow-sm flex items-center justify-center gap-1.5">
               Lamar Sekarang <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
@@ -394,7 +408,6 @@
 
         <!-- ROW 2 -->
         <div class="job-row p-6 lg:px-6 lg:py-5 hover:bg-blue-50/40 transition grid grid-cols-1 lg:grid-cols-12 gap-4 items-center" data-plant="Techpack">
-          <!-- Kolom 1: Posisi -->
           <div class="lg:col-span-3">
             <span class="inline-block bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2.5 py-0.5 rounded mb-1">EHS / Safety</span>
             <h3 class="text-base font-bold text-albea-navy">EHS Engineer / Supervisor</h3>
@@ -405,7 +418,6 @@
             </div>
           </div>
 
-          <!-- Kolom 2: Penempatan -->
           <div class="lg:col-span-3">
             <div class="text-sm font-semibold text-gray-800 flex items-center gap-1.5">
               <i data-lucide="building-2" class="w-4 h-4 text-albea-teal shrink-0"></i> PT Techpack Asia
@@ -413,7 +425,6 @@
             <p class="text-xs text-gray-500 pl-5 mt-0.5">Karangawen, Kab. Demak, Jawa Tengah</p>
           </div>
 
-          <!-- Kolom 3: Job Desc -->
           <div class="lg:col-span-4">
             <p class="text-xs text-gray-600 leading-relaxed">
               Mengawasi kepatuhan standar keselamatan kerja K3 (Zero Accident), inspeksi mesin produksi, pengelolaan limbah B3, dan audit ISO 14001 / 45001.
@@ -423,7 +434,6 @@
             </button>
           </div>
 
-          <!-- Kolom 4: Action -->
           <div class="lg:col-span-2 flex lg:justify-end items-center gap-2 pt-3 lg:pt-0 border-t lg:border-t-0 border-gray-100">
             <a href="#" onclick="openMsForm(event, 'EHS Engineer / Supervisor - PT Techpack Asia')" class="w-full lg:w-auto text-center bg-albea-teal hover:bg-teal-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold transition shadow-sm flex items-center justify-center gap-1.5">
               Lamar Sekarang <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
@@ -433,7 +443,6 @@
 
         <!-- ROW 3 -->
         <div class="job-row p-6 lg:px-6 lg:py-5 hover:bg-blue-50/40 transition grid grid-cols-1 lg:grid-cols-12 gap-4 items-center" data-plant="Betts">
-          <!-- Kolom 1: Posisi -->
           <div class="lg:col-span-3">
             <span class="inline-block bg-orange-100 text-orange-800 text-[11px] font-bold px-2.5 py-0.5 rounded mb-1">Manufacturing & Engineering</span>
             <h3 class="text-base font-bold text-albea-navy">Laminate Tube Process Engineer</h3>
@@ -444,7 +453,6 @@
             </div>
           </div>
 
-          <!-- Kolom 2: Penempatan -->
           <div class="lg:col-span-3">
             <div class="text-sm font-semibold text-gray-800 flex items-center gap-1.5">
               <i data-lucide="building-2" class="w-4 h-4 text-albea-teal shrink-0"></i> PT Betts Indonesia
@@ -452,7 +460,6 @@
             <p class="text-xs text-gray-500 pl-5 mt-0.5">Ngoro Industri Persada, Mojokerto, Jawa Timur</p>
           </div>
 
-          <!-- Kolom 3: Job Desc -->
           <div class="lg:col-span-4">
             <p class="text-xs text-gray-600 leading-relaxed">
               Optimasi parameter mesin produksi laminate tubes, peningkatan efisiensi siklus lini produksi kemasan, serta analisis akar masalah cacat produk.
@@ -462,7 +469,6 @@
             </button>
           </div>
 
-          <!-- Kolom 4: Action -->
           <div class="lg:col-span-2 flex lg:justify-end items-center gap-2 pt-3 lg:pt-0 border-t lg:border-t-0 border-gray-100">
             <a href="#" onclick="openMsForm(event, 'Laminate Tube Process Engineer - PT Betts Indonesia')" class="w-full lg:w-auto text-center bg-albea-teal hover:bg-teal-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold transition shadow-sm flex items-center justify-center gap-1.5">
               Lamar Sekarang <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
@@ -472,7 +478,6 @@
 
         <!-- ROW 4 -->
         <div class="job-row p-6 lg:px-6 lg:py-5 hover:bg-blue-50/40 transition grid grid-cols-1 lg:grid-cols-12 gap-4 items-center" data-plant="Surabaya">
-          <!-- Kolom 1: Posisi -->
           <div class="lg:col-span-3">
             <span class="inline-block bg-purple-100 text-purple-800 text-[11px] font-bold px-2.5 py-0.5 rounded mb-1">Supply Chain & Logistics</span>
             <h3 class="text-base font-bold text-albea-navy">Warehouse & Logistic Staff</h3>
@@ -483,7 +488,6 @@
             </div>
           </div>
 
-          <!-- Kolom 2: Penempatan -->
           <div class="lg:col-span-3">
             <div class="text-sm font-semibold text-gray-800 flex items-center gap-1.5">
               <i data-lucide="building-2" class="w-4 h-4 text-albea-teal shrink-0"></i> PT Albéa Rigid Packaging Surabaya
@@ -491,7 +495,6 @@
             <p class="text-xs text-gray-500 pl-5 mt-0.5">Kawasan Industri Rungkut, Surabaya, Jawa Timur</p>
           </div>
 
-          <!-- Kolom 3: Job Desc -->
           <div class="lg:col-span-4">
             <p class="text-xs text-gray-600 leading-relaxed">
               Mengelola akurasi stok pergudangan bahan baku dan kemasan rigid packaging, penjadwalan armada pengiriman, serta pelaksanaan stock opname berkala.
@@ -501,7 +504,6 @@
             </button>
           </div>
 
-          <!-- Kolom 4: Action -->
           <div class="lg:col-span-2 flex lg:justify-end items-center gap-2 pt-3 lg:pt-0 border-t lg:border-t-0 border-gray-100">
             <a href="#" onclick="openMsForm(event, 'Warehouse & Logistic Staff - PT Albéa Rigid Packaging Surabaya')" class="w-full lg:w-auto text-center bg-albea-teal hover:bg-teal-600 text-white px-4 py-2.5 rounded-lg text-xs font-bold transition shadow-sm flex items-center justify-center gap-1.5">
               Lamar Sekarang <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
@@ -614,23 +616,13 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // =========================================================================
-    // PENGATURAN LINK MICROSOFT FORMS (GANTI URL DI BAWAH DENGAN LINK ASLI ANDA)
-    // =========================================================================
+    // Link Resmi Microsoft Forms Rekrutmen Albéa Indonesia
     const MS_FORM_URL = "https://forms.cloud.microsoft/e/Cnv1HnUYE3";
 
     // Fungsi Membuka Link Microsoft Forms
     function openMsForm(event, positionName) {
       event.preventDefault();
-      if (MS_FORM_URL.includes("GANTI_DENGAN_ID_MS_FORM_ANDA")) {
-        alert(
-          "Simulasi Redirect ke Microsoft Forms!\n\n" +
-          "Posisi dipilih: " + positionName + "\n\n" +
-          "Catatan Admin HR: Silakan ganti variabel 'MS_FORM_URL' di dalam file index.html dengan tautan Microsoft Forms resmi Anda agar pelamar langsung diarahkan ke formulir pendaftaran."
-        );
-      } else {
-        window.open(MS_FORM_URL, "_blank", "noopener,noreferrer");
-      }
+      window.open(MS_FORM_URL, "_blank", "noopener,noreferrer");
     }
 
     // Smooth Scroll
