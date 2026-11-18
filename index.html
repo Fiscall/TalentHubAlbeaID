@@ -32,14 +32,31 @@
   <nav class="bg-albea-navy text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <!-- Logo Brand -->
-        <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToSection('hero')">
-          <div class="bg-white text-albea-navy p-2 rounded-lg font-black text-2xl tracking-wider">
-            ALBÉA
+        <!-- Logo Brand Albéa dengan Simbol Heksagon -->
+        <div class="flex items-center space-x-3.5 cursor-pointer group" onclick="scrollToSection('hero')">
+          <!-- Logo SVG Vektor Albéa (Putih untuk latar Navy) -->
+          <div class="flex items-center">
+            <!-- Jika ingin menggunakan file gambar lokal, ganti blok SVG di bawah dengan:
+                 <img src="Albea logo (white).png" alt="Albéa Logo" class="h-10 w-auto object-contain"> -->
+            <svg class="h-10 w-auto text-white transition-transform duration-300 group-hover:scale-105" viewBox="0 0 360 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Albéa Logo">
+              <!-- Simbol Heksagon Terbuka di Kiri -->
+              <path d="M98 31L63 11C58.5 8.5 53.5 8.5 49 11L14 31C9.5 33.5 7 38.2 7 43.3V66.7C7 71.8 9.5 76.5 14 79L49 99C53.5 101.5 58.5 101.5 63 99L98 79" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Huruf A -->
+              <path d="M35 76L53.5 35H62.5L81 76H70.5L66.8 67.2H49.2L45.5 76H35ZM52.4 59.5H63.6L58 46.2L52.4 59.5Z" fill="currentColor"/>
+              <!-- Huruf L -->
+              <path d="M92 35H101.5V67.8H126V76H92V35Z" fill="currentColor"/>
+              <!-- Huruf B -->
+              <path d="M137 35H161.5C170.5 35 175.5 39.2 175.5 45.6C175.5 50.2 172.8 53.3 168.5 54.6C173.8 55.9 177 59.5 177 64.8C177 71.8 171.5 76 162 76H137V35ZM159.8 51.5C164.2 51.5 166.5 49.7 166.5 46.6C166.5 43.6 164.2 42 159.8 42H146.3V51.5H159.8ZM160.8 69C165.4 69 167.8 67.1 167.8 63.8C167.8 60.5 165.3 58.7 160.6 58.7H146.3V69H160.8Z" fill="currentColor"/>
+              <!-- Huruf É + Aksen -->
+              <path d="M214 27L227 21V27.5L214 31.5V27Z" fill="currentColor"/>
+              <path d="M191 35H228V42.5H200.5V51.3H225V58.6H200.5V68.3H228.5V76H191V35Z" fill="currentColor"/>
+              <!-- Huruf A -->
+              <path d="M238 76L256.5 35H265.5L284 76H273.5L269.8 67.2H252.2L248.5 76H238ZM255.4 59.5H266.6L261 46.2L255.4 59.5Z" fill="currentColor"/>
+            </svg>
           </div>
-          <div class="border-l border-gray-500 pl-3">
-            <span class="text-xs uppercase tracking-widest text-gray-300 block">Indonesia</span>
-            <span class="text-sm font-semibold text-albea-teal">Beauty Packaging Solutions</span>
+          <div class="border-l border-gray-500 pl-3.5">
+            <span class="text-xs uppercase tracking-widest text-gray-300 block font-semibold">Indonesia</span>
+            <span class="text-xs sm:text-sm font-medium text-albea-teal">Beauty Packaging Solutions</span>
           </div>
         </div>
 
@@ -146,10 +163,10 @@
             <i data-lucide="map-pin" class="w-4 h-4 text-albea-teal"></i> Karangawen, Kabupaten Demak, Jawa Tengah
           </p>
           <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-            perusahaan manufaktur kelas dunia yang bergerak di bidang produksi kemasan kosmetik dan produk kecantikan (seperti wadah lipstik, compact powder, lip cream, dan kemasan plastik lainnya).
+            Perusahaan manufaktur kelas dunia yang bergerak di bidang produksi kemasan kosmetik dan produk kecantikan (seperti wadah lipstik, compact powder, lip cream, dan kemasan plastik lainnya).
           </p>
           <div class="border-t border-gray-100 pt-4 text-xs text-gray-500 flex justify-between">
-            <span>Spesialisasi: Tubes & Injection</span>
+            <span>Spesialisasi: Cosmetics & Injection</span>
             <span class="text-albea-teal font-semibold">Operasional Aktif</span>
           </div>
         </div>
@@ -159,18 +176,18 @@
       <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition">
         <div class="h-48 bg-gradient-to-r from-teal-800 to-albea-blue flex items-center justify-center text-white relative">
           <i data-lucide="boxes" class="w-16 h-16 opacity-30"></i>
-          <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Cosmetics Packaging</span>
+          <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Tubes Packaging</span>
         </div>
         <div class="p-6">
           <h3 class="text-xl font-bold text-albea-navy mb-2">PT Betts Indonesia</h3>
           <p class="text-sm text-gray-500 mb-4 flex items-center gap-1">
-            <i data-lucide="map-pin" class="w-4 h-4 text-albea-teal"></i> Ngoro Industri Persada Blok L-1, Ngoro, Mojokerto, Jawa Timur, Indonesia.
+            <i data-lucide="map-pin" class="w-4 h-4 text-albea-teal"></i> Ngoro Industri Persada Blok L-1, Ngoro, Mojokerto, Jawa Timur
           </p>
           <p class="text-gray-600 text-sm mb-4 leading-relaxed">
             Manufaktur kemasan (khususnya laminate tubes dan kemasan plastik untuk produk oral, kosmetik, farmasi, serta perawatan pribadi).
-            </p>
+          </p>
           <div class="border-t border-gray-100 pt-4 text-xs text-gray-500 flex justify-between">
-            <span>Spesialisasi: Beauty & Makeup</span>
+            <span>Spesialisasi: Laminate Tubes</span>
             <span class="text-albea-teal font-semibold">Operasional Aktif</span>
           </div>
         </div>
@@ -188,10 +205,10 @@
             <i data-lucide="map-pin" class="w-4 h-4 text-albea-teal"></i> Kawasan Industri Rungkut, Surabaya
           </p>
           <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-            manufaktur multinasional asal Prancis yang bergerak di bidang pembuatan kemasan plastik kaku (rigid packaging), khususnya untuk produk kosmetik, perawatan diri (personal care), dan wewangian (fragrance)
+            Manufaktur multinasional asal Prancis yang bergerak di bidang pembuatan kemasan plastik kaku (rigid packaging), khususnya untuk produk kosmetik, perawatan diri (personal care), dan wewangian (fragrance).
           </p>
           <div class="border-t border-gray-100 pt-4 text-xs text-gray-500 flex justify-between">
-            <span>Spesialisasi: Assembly & Distro</span>
+            <span>Spesialisasi: Rigid Packaging</span>
             <span class="text-albea-teal font-semibold">Operasional Aktif</span>
           </div>
         </div>
@@ -317,9 +334,9 @@
         <div class="mt-4 md:mt-0 flex gap-3">
           <select id="filter-plant" onchange="filterJobs()" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-albea-teal">
             <option value="ALL">Semua Lokasi Pabrik</option>
-            <option value="Karangawen">PT Techpack Asia (Karangawen)</option>
-            <option value="Semarang">Albéa Semarang Plant</option>
-            <option value="Surabaya">Albéa Surabaya Facility</option>
+            <option value="Techpack">PT Techpack Asia (Karangawen)</option>
+            <option value="Betts">PT Betts Indonesia (Mojokerto)</option>
+            <option value="Surabaya">PT Albéa Rigid Packaging Surabaya</option>
           </select>
         </div>
       </div>
@@ -327,7 +344,7 @@
       <!-- Job Cards Grid -->
       <div id="jobs-container" class="grid md:grid-cols-2 gap-6">
         <!-- Job 1 -->
-        <div class="job-card bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:border-albea-teal transition" data-plant="Karangawen">
+        <div class="job-card bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:border-albea-teal transition" data-plant="Techpack">
           <div class="flex justify-between items-start mb-4">
             <div>
               <span class="bg-blue-50 text-albea-blue text-xs font-semibold px-2.5 py-1 rounded-md">Talent Acquisition / HR</span>
@@ -343,14 +360,14 @@
           </p>
           <div class="flex justify-between items-center border-t border-gray-100 pt-4">
             <span class="text-xs text-gray-400">Diposting: Aktif Nov 2026</span>
-            <button onclick="openApplyModal('Recruitment & OD Specialist', 'Karangawen')" class="bg-albea-navy hover:bg-albea-blue text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+            <button onclick="openApplyModal('Recruitment & OD Specialist', 'PT Techpack Asia (Karangawen)')" class="bg-albea-navy hover:bg-albea-blue text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
               Apply Now
             </button>
           </div>
         </div>
 
         <!-- Job 2 -->
-        <div class="job-card bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:border-albea-teal transition" data-plant="Karangawen">
+        <div class="job-card bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:border-albea-teal transition" data-plant="Techpack">
           <div class="flex justify-between items-start mb-4">
             <div>
               <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md">EHS / Safety</span>
@@ -366,30 +383,30 @@
           </p>
           <div class="flex justify-between items-center border-t border-gray-100 pt-4">
             <span class="text-xs text-gray-400">Diposting: Aktif Nov 2026</span>
-            <button onclick="openApplyModal('EHS Engineer / Supervisor', 'Karangawen')" class="bg-albea-navy hover:bg-albea-blue text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+            <button onclick="openApplyModal('EHS Engineer / Supervisor', 'PT Techpack Asia (Karangawen)')" class="bg-albea-navy hover:bg-albea-blue text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
               Apply Now
             </button>
           </div>
         </div>
 
         <!-- Job 3 -->
-        <div class="job-card bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:border-albea-teal transition" data-plant="Semarang">
+        <div class="job-card bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:border-albea-teal transition" data-plant="Betts">
           <div class="flex justify-between items-start mb-4">
             <div>
               <span class="bg-orange-50 text-orange-700 text-xs font-semibold px-2.5 py-1 rounded-md">Manufacturing & Ops</span>
-              <h3 class="text-xl font-bold text-albea-navy mt-2">Injection Molding Process Engineer</h3>
+              <h3 class="text-xl font-bold text-albea-navy mt-2">Laminate Tube Process Engineer</h3>
               <p class="text-xs text-gray-500 flex items-center gap-1 mt-1">
-                <i data-lucide="building-2" class="w-3.5 h-3.5"></i> Albéa Semarang Plant
+                <i data-lucide="building-2" class="w-3.5 h-3.5"></i> PT Betts Indonesia (Ngoro, Mojokerto)
               </p>
             </div>
             <span class="bg-emerald-50 text-emerald-600 text-xs font-semibold px-2.5 py-1 rounded-full">Full-Time</span>
           </div>
           <p class="text-gray-600 text-sm mb-6 line-clamp-2">
-            Optimasi parameter cetakan plastik mesin injection molding, efisiensi siklus produksi kemasan kosmetik, dan pemecahan masalah cacat mutu.
+            Optimasi parameter mesin produksi laminate tubes, efisiensi siklus produksi kemasan oral & kosmetik, serta pemecahan masalah cacat mutu.
           </p>
           <div class="flex justify-between items-center border-t border-gray-100 pt-4">
             <span class="text-xs text-gray-400">Diposting: Aktif Nov 2026</span>
-            <button onclick="openApplyModal('Injection Molding Process Engineer', 'Semarang')" class="bg-albea-navy hover:bg-albea-blue text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+            <button onclick="openApplyModal('Laminate Tube Process Engineer', 'PT Betts Indonesia (Mojokerto)')" class="bg-albea-navy hover:bg-albea-blue text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
               Apply Now
             </button>
           </div>
@@ -402,17 +419,17 @@
               <span class="bg-purple-50 text-purple-700 text-xs font-semibold px-2.5 py-1 rounded-md">Supply Chain & Logistics</span>
               <h3 class="text-xl font-bold text-albea-navy mt-2">Warehouse & Logistic Staff</h3>
               <p class="text-xs text-gray-500 flex items-center gap-1 mt-1">
-                <i data-lucide="building-2" class="w-3.5 h-3.5"></i> Albéa Surabaya Facility
+                <i data-lucide="building-2" class="w-3.5 h-3.5"></i> PT Albéa Rigid Packaging Surabaya
               </p>
             </div>
             <span class="bg-emerald-50 text-emerald-600 text-xs font-semibold px-2.5 py-1 rounded-full">Full-Time</span>
           </div>
           <p class="text-gray-600 text-sm mb-6 line-clamp-2">
-            Pengelolaan stok pergudangan bahan baku dan produk jadi, pengaturan jadwal pengiriman ekspedisi, serta audit ketepatan barang.
+            Pengelolaan stok pergudangan bahan baku dan produk jadi rigid packaging, pengaturan jadwal pengiriman ekspedisi, serta audit ketepatan barang.
           </p>
           <div class="flex justify-between items-center border-t border-gray-100 pt-4">
             <span class="text-xs text-gray-400">Diposting: Aktif Nov 2026</span>
-            <button onclick="openApplyModal('Warehouse & Logistic Staff', 'Surabaya')" class="bg-albea-navy hover:bg-albea-blue text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+            <button onclick="openApplyModal('Warehouse & Logistic Staff', 'PT Albéa Rigid Packaging Surabaya')" class="bg-albea-navy hover:bg-albea-blue text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
               Apply Now
             </button>
           </div>
@@ -440,7 +457,7 @@
               <th class="p-3">Waktu Submit</th>
               <th class="p-3">Nama Pelamar</th>
               <th class="p-3">Posisi Dilamar</th>
-              <th class="p-3">Lokasi Pabrik</th>
+              <th class="p-3">Entitas / Pabrik</th>
               <th class="p-3">Email</th>
               <th class="p-3">No. HP</th>
               <th class="p-3">Link File CV (OneDrive)</th>
@@ -456,28 +473,45 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-albea-navy text-gray-400 py-12 border-t border-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+  <footer class="bg-albea-navy text-gray-400 pt-14 pb-8 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-10">
       <div>
-        <div class="text-white font-black text-xl mb-3">ALBÉA INDONESIA</div>
-        <p class="text-xs leading-relaxed">
-          Penyedia solusi kemasan kecantikan global terdepan. Berkomitmen pada inovasi, keselamatan kerja EHS, dan pembangunan keberlanjutan.
+        <!-- Logo Albéa Putih di Footer -->
+        <div class="mb-4">
+          <svg class="h-9 w-auto text-white" viewBox="0 0 360 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Albéa Logo">
+            <path d="M98 31L63 11C58.5 8.5 53.5 8.5 49 11L14 31C9.5 33.5 7 38.2 7 43.3V66.7C7 71.8 9.5 76.5 14 79L49 99C53.5 101.5 58.5 101.5 63 99L98 79" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M35 76L53.5 35H62.5L81 76H70.5L66.8 67.2H49.2L45.5 76H35ZM52.4 59.5H63.6L58 46.2L52.4 59.5Z" fill="currentColor"/>
+            <path d="M92 35H101.5V67.8H126V76H92V35Z" fill="currentColor"/>
+            <path d="M137 35H161.5C170.5 35 175.5 39.2 175.5 45.6C175.5 50.2 172.8 53.3 168.5 54.6C173.8 55.9 177 59.5 177 64.8C177 71.8 171.5 76 162 76H137V35ZM159.8 51.5C164.2 51.5 166.5 49.7 166.5 46.6C166.5 43.6 164.2 42 159.8 42H146.3V51.5H159.8ZM160.8 69C165.4 69 167.8 67.1 167.8 63.8C167.8 60.5 165.3 58.7 160.6 58.7H146.3V69H160.8Z" fill="currentColor"/>
+            <path d="M214 27L227 21V27.5L214 31.5V27Z" fill="currentColor"/>
+            <path d="M191 35H228V42.5H200.5V51.3H225V58.6H200.5V68.3H228.5V76H191V35Z" fill="currentColor"/>
+            <path d="M238 76L256.5 35H265.5L284 76H273.5L269.8 67.2H252.2L248.5 76H238ZM255.4 59.5H266.6L261 46.2L255.4 59.5Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <p class="text-xs leading-relaxed text-gray-300">
+          Penyedia solusi kemasan kecantikan global terdepan. Berkomitmen pada inovasi berkelanjutan, budaya keselamatan kerja EHS, dan pengembangan talenta terbaik di Indonesia.
         </p>
       </div>
       <div>
-        <h4 class="text-white font-semibold text-sm mb-3">Lokasi Pabrik Utama</h4>
-        <p class="text-xs mb-1">PT Techpack Asia (Albéa Karangawen)</p>
-        <p class="text-xs text-gray-500">Jl. Raya Semarang - Purwodadi Km 18, Karangawen, Kab. Demak, Jawa Tengah.</p>
+        <h4 class="text-white font-semibold text-sm mb-3">Entitas & Pabrik Albéa Indonesia</h4>
+        <ul class="text-xs space-y-2 text-gray-300">
+          <li>• <strong>PT Techpack Asia</strong> — Karangawen, Demak</li>
+          <li>• <strong>PT Betts Indonesia</strong> — Ngoro, Mojokerto</li>
+          <li>• <strong>PT Albéa Rigid Packaging Surabaya</strong> — Rungkut, Surabaya</li>
+        </ul>
       </div>
       <div>
-        <h4 class="text-white font-semibold text-sm mb-3">Inisiatif Digital HR</h4>
-        <p class="text-xs leading-relaxed">
-          Portal ini dikembangkan secara mandiri (*In-House Zero Cost*) untuk mendukung ajang **PISW (Progress Improvement & Sharing Workshop) 2026**.
+        <h4 class="text-white font-semibold text-sm mb-3">Inisiatif Digital Continuous Improvement</h4>
+        <p class="text-xs leading-relaxed text-gray-300">
+          Portal ini dikembangkan secara mandiri (<em>In-House Zero-Cost Ecosystem</em>) oleh Tim HR & Talent Acquisition untuk mendukung ajang <strong>PISW (Progress Improvement & Sharing Workshop) 2026</strong>.
         </p>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-gray-800 text-center text-xs">
-      &copy; 2026 Albéa Indonesia. All Rights Reserved.
+
+    <!-- COPYRIGHT BAR PALING BAWAH -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-400">
+      <p>&copy; 2026 <strong>Albéa Indonesia</strong> (PT Techpack Asia, PT Betts Indonesia, PT Albéa Rigid Packaging Surabaya). All Rights Reserved.</p>
+      <p class="text-gray-500">HR & Talent Acquisition Digital Portal • Zero-Cost Recruitment Policy</p>
     </div>
   </footer>
 
@@ -549,7 +583,7 @@
         time: '02/11/2026 09:15',
         name: 'Budi Santoso',
         title: 'Recruitment & OD Specialist',
-        plant: 'Karangawen',
+        plant: 'PT Techpack Asia (Karangawen)',
         email: 'budi.santoso@email.com',
         phone: '081298765432',
         cvLink: '20261102_Budi_Santoso_CV.pdf',
@@ -559,7 +593,7 @@
         time: '02/11/2026 10:40',
         name: 'Siti Aminah',
         title: 'EHS Engineer / Supervisor',
-        plant: 'Karangawen',
+        plant: 'PT Techpack Asia (Karangawen)',
         email: 'siti.aminah@email.com',
         phone: '085712345678',
         cvLink: '20261102_Siti_Aminah_CV.pdf',
@@ -600,7 +634,7 @@
     // Modal Handlers
     function openApplyModal(jobTitle, plant) {
       document.getElementById('modal-job-title').innerText = jobTitle;
-      document.getElementById('modal-job-plant').innerText = 'Lokasi: Plant ' + plant;
+      document.getElementById('modal-job-plant').innerText = 'Entitas: ' + plant;
       document.getElementById('form-job-title').value = jobTitle;
       document.getElementById('form-job-plant').value = plant;
       document.getElementById('apply-modal').classList.remove('hidden');
